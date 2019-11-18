@@ -12,13 +12,15 @@ import LoginPage from "./containers/LoginPage";
 class App extends Component{
     render(){
         return(
+            <Router>
             <div className="App">
                 <h1> Hello, World! 12345</h1>
                 <Switch>
+                    <Route exact path="/" component={() => (<div>Main Page</div>)}/>
                     <Route path="/login" component={LoginPage}/>
-                    <Route path="/" component={() => (<div>Main Page</div>)}/>
                 </Switch>
             </div>
+            </Router>
         );
     }
 }

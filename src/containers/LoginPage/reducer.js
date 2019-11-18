@@ -1,3 +1,4 @@
+import {LOG_IN_SUCCESS, LOG_IN_FAILURE} from './constants';
 const initialState = {
     userInfo: {
         firstName: '',
