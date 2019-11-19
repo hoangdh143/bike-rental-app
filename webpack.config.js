@@ -31,5 +31,11 @@ module.exports = {
         historyApiFallback: true,
         hotOnly: true
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [new webpack.HotModuleReplacementPlugin()],
+    externals: {
+        // global app config object
+        config: JSON.stringify({
+            apiUrl: 'http://localhost:4000'
+        })
+    }
 };
