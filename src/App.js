@@ -1,6 +1,8 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
 import "./App.css";
+import 'antd/dist/antd.css';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,7 +16,6 @@ class App extends Component{
         return(
             <Router>
             <div className="App">
-                <h1> Hello, World! 12345</h1>
                 <Switch>
                     <Route exact path="/" component={() => (<div>Main Page <Link to="/login">Login</Link></div>)}/>
                     <Route path="/login" component={LoginPage}/>
