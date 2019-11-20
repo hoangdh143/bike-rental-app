@@ -1,7 +1,7 @@
 import React from "react";
 import {Menu, Layout} from "antd";
 import {NavbarWrapper} from "./style";
-import logo from '../../images/logo.jpg';
+import logo from '../../images/logo.png';
 
 const {Header} = Layout;
 
@@ -10,7 +10,7 @@ export default function Navbar() {
         <NavbarWrapper>
         <Header style={{ width: '100%' }}>
             <div className="logo">
-                <img alt="logo" src={logo}/>
+                <img alt="logo" src={logo} style={{maxWidth: '100%', maxHeight: '100%'}}/>
             </div>
             <Menu
                 theme="dark"
