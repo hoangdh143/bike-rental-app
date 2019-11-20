@@ -5,7 +5,8 @@ import axios from "axios";
 export const userService = {
     login,
     logout,
-    getAll
+    getAll,
+    getCurrentUser
 };
 
 function login(username, password) {
@@ -35,4 +36,10 @@ function getAll() {
     };
 
     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+}
+
+function getCurrentUser() {
+    const user = localStorage.getItem('user');
+    console.log(JSON.parse(user));
+    return JSON.parse(user);
 }

@@ -10,7 +10,7 @@ export function* login(state) {
     const credential = getCredential(state);
     try  {
         const user = yield userService.login(credential.username, credential.password);
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user));
         yield put(loginSuccessAction(user));
     } catch (error) {
         yield put(loginFailureAction(error.message));

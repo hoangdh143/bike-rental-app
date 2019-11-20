@@ -10,6 +10,8 @@ import {
     Link
 } from "react-router-dom";
 import LoginPage from "./containers/LoginPage";
+import PrivateRoute from "./components/PrivateRoute";
+import MainPage from "./containers/MainPage";
 
 class App extends Component{
     render(){
@@ -17,7 +19,7 @@ class App extends Component{
             <Router>
             <div className="App">
                 <Switch>
-                    <Route exact path="/" component={() => (<div>Main Page <Link to="/login">Login</Link></div>)}/>
+                    <PrivateRoute exact path="/" component={MainPage}/>
                     <Route path="/login" component={LoginPage}/>
                 </Switch>
             </div>
