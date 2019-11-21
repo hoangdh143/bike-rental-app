@@ -1,12 +1,6 @@
 const config = require('config.json');
 const jwt = require('jsonwebtoken');
-const imageUrl = 'https://auto.ndtvimg.com/bike-images/colors/yamaha/fz-s-v20-fi/yamaha-fz-s-v20-fi-lightning-cyan.webp?v=31';
-const bike = (id, location, model, image, description, price) => {return {id, location, model, image, description, price};}
-const bikes = [
-    bike('1', 'Hanoi', 'Honda', imageUrl, 'Some description', '200000'),
-    bike('2', 'HCM', 'Suzuki', imageUrl, 'Some description', '100000'),
-    bike('3', 'Danang', 'Alpha', imageUrl, 'Some description', '150000'),
-];
+const bikes = require('./bikes');
 
 module.exports = {
     getAll,
@@ -18,8 +12,9 @@ module.exports = {
 };
 
 async function getAll(page, size) {
+    const totalRecords = bikes.length;
     --page;
-    return bikes.slice(page*size, (page+1)*size);
+    return {bikes: bikes.slice(page*size, (page+1)*size), totalRecords};
 }
 
 async function getById(id) {
