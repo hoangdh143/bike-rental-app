@@ -1,5 +1,5 @@
 import { put, takeEvery, delay } from 'redux-saga/effects'
-import {userService} from "../../utils/login.service";
+import {userService} from "../../services/login.service";
 import {LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS} from "./constants";
 import {takeLatest} from "@redux-saga/core/effects";
 import {loginFailureAction, loginSuccessAction} from "./actions";

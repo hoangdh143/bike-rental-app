@@ -1,5 +1,5 @@
 import {LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST} from './constants';
-import {userService} from "../../utils/login.service";
+import {userService} from "../../services/login.service";
 import { produce } from 'immer';
 
 const initialState = {

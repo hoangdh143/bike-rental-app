@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Redirect, Route} from "react-router-dom";
-import {userService} from "../../utils/login.service";
+import {userService} from "../../services/login.service";
 
 export default function PrivateRoute({component, roles, ...rest}) {
     return (<Route {...rest} render={props => {

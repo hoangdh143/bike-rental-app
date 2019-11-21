@@ -1,5 +1,5 @@
 import config from 'config';
-import { authHeader } from './auth-header';
+import { authHeader } from '../utils/auth-header';
 import axios from "axios";
 
 export const userService = {
