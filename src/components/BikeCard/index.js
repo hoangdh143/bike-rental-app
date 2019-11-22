@@ -1,12 +1,14 @@
 import React from "react";
 import {Button, Card} from 'antd';
 import {createNotification} from "../../utils/notification-handle";
+import {BikeCardWrapper} from "./style";
 
 const { Meta } = Card;
 
 export default function BikeCard({bike}) {
     return (
-        <Card
+        <BikeCardWrapper>
+        <Card className="bike-card"
             hoverable
             style={{ width: 240 }}
             cover={<img alt="example" src={bike.image} />}
@@ -15,5 +17,6 @@ export default function BikeCard({bike}) {
             <div>{bike.city}</div>
             <Button onClick={createNotification('info', 'Hello')}>Add to cart</Button>
         </Card>
+        </BikeCardWrapper>
     );
 }

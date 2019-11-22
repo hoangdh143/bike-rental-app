@@ -17,8 +17,7 @@ import {createNotification} from "../../utils/notification-handle";
 import {goToPageAction} from "./actions";
 
 export const DEFAULT_CURRENT_PAGE = 1;
-export const DEFAULT_PAGE_SIZE = 5;
-const Async = createInstance({promiseFn: () => bikeService.getAll(DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE).then(data => data)})
+export const DEFAULT_PAGE_SIZE = 10;
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(mainPageReducer, composeWithDevTools(applyMiddleware(sagaMiddleWare)));
@@ -41,7 +40,7 @@ function MainPageContent() {
                     <Navbar/>
                     <Content className="main-page-content">
                         <BikeSearchForm/>
-                        <BikeGallery currentPage={page} bikes={bikes} itemsPerPage={size} totalRecords={totalRecords}/>
+                        <BikeGallery currentPage={page} bikes={bikes} pageSize={size} totalRecords={totalRecords}/>
                     </Content>
                     <PageFooter/>
                 </Layout>

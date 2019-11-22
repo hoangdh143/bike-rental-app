@@ -32,6 +32,7 @@ export default function mainPageReducer(state = initialState, action) {
                 break;
             case GO_TO_PAGE:
                 console.log("Go to page");
+                draft.query = action.query;
                 draft.pageQuery = action.pageQuery;
                 break;
             case DISPLAY:

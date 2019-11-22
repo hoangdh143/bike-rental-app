@@ -18,9 +18,12 @@ export const searchAction = (query, page = DEFAULT_CURRENT_PAGE, size = DEFAULT_
     }
 };
 
-export const goToPageAction = (page, size) => {
+export const goToPageAction = (page, size, keyword = '') => {
     return {
         type: GO_TO_PAGE,
+        query: {
+            keyword
+        },
         pageQuery: {
             page,
             size
