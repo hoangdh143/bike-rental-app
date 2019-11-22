@@ -1,11 +1,22 @@
 import { produce } from 'immer';
-import {ADD_TO_CART, SEARCH, GO_TO_PAGE}  from './constants';
+import {ADD_TO_CART, SEARCH, GO_TO_PAGE, DISPLAY} from './constants';
+import {DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE} from "./index";
 
 const initialState = {
     cart: [],
-    query: {},
-    page: {},
-    size: {},
+    query: {
+        keyword: '',
+    },
+    pageQuery: {
+        page: 0,
+        size: 0
+    },
+    display: {
+        bikes: [],
+        page: 0,
+        size: DEFAULT_PAGE_SIZE,
+        totalRecords: 0,
+    }
 };
 
 export default function mainPageReducer(state = initialState, action) {
@@ -21,8 +32,10 @@ export default function mainPageReducer(state = initialState, action) {
                 break;
             case GO_TO_PAGE:
                 console.log("Go to page");
-                draft.page = action.page;
-                draft.size = action.size;
+                draft.pageQuery = action.pageQuery;
+                break;
+            case DISPLAY:
+                draft.display = action.display;
                 break;
             default:
                 return state;

@@ -10,14 +10,24 @@ export const bikeService = {
     deleteById,
 };
 
-function getAll(page = 0, size = 10) {
+// async function getAll(page = 0, size = 10) {
+//     const requestOptions = {
+//         headers: authHeader(),
+//         params: {page, size}
+//     };
+//
+//     const {data} = await axios.get(`${config.apiUrl}/bikes`, requestOptions);
+//     return data;
+// }
+
+async function getAll(page = 0, size = 10, city= "") {
     const requestOptions = {
         headers: authHeader(),
-        params: {page, size}
+        params: {city, page, size}
     };
 
-    return axios.get(`${config.apiUrl}/bikes`, requestOptions).then(response => response.data);
-
+    const {data} = await axios.get(`${config.apiUrl}/bikes`, requestOptions);
+    return data;
 }
 
 function getById(id) {

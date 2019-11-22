@@ -12,6 +12,7 @@ export default function BikeCard({bike}) {
             cover={<img alt="example" src={bike.image} />}
         >
             <Meta title={bike.model} description={`${bike.price} VND`} />
+            <div>{bike.city}</div>
             <Button onClick={createNotification('info', 'Hello')}>Add to cart</Button>
         </Card>
     );

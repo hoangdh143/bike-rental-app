@@ -4,6 +4,7 @@ const bikes = require('./bikes');
 
 module.exports = {
     getAll,
+    getByCity,
     getById,
     create,
     update,
@@ -15,6 +16,13 @@ async function getAll(page, size) {
     const totalRecords = bikes.length;
     --page;
     return {bikes: bikes.slice(page*size, (page+1)*size), totalRecords};
+}
+
+async function getByCity(city, page, size) {
+    const bikesByCity = bikes.filter(bike => bike.city.toLowerCase() === city.toLowerCase());
+    const totalRecords = bikesByCity.length;
+    --page;
+    return {bikes: bikesByCity.slice(page*size, (page+1)*size), totalRecords};
 }
 
 async function getById(id) {

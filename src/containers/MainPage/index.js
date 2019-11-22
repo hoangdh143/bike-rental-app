@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Layout} from "antd";
 import Navbar from "../../components/Navbar";
 import PageFooter from "../../components/PageFooter";
@@ -12,41 +12,47 @@ import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import mainPageReducer from "./reducer";
 import mainPageSaga from "./saga";
-import {Provider} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {createNotification} from "../../utils/notification-handle";
+import {goToPageAction} from "./actions";
 
-const currentPage = 1;
-const itemsPerPage = 10;
-const Async = createInstance({promiseFn: () => bikeService.getAll(currentPage, itemsPerPage).then(data => data)})
+export const DEFAULT_CURRENT_PAGE = 1;
+export const DEFAULT_PAGE_SIZE = 5;
+const Async = createInstance({promiseFn: () => bikeService.getAll(DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE).then(data => data)})
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(mainPageReducer, composeWithDevTools(applyMiddleware(sagaMiddleWare)));
 sagaMiddleWare.run(mainPageSaga);
 
+const selectBikes = state => state.display;
+
 const {Content} = Layout;
-export default function MainPage() {
+function MainPageContent() {
+    const dispatch = useDispatch();
+    const {bikes, page, size, totalRecords} = useSelector(selectBikes);
+
+    useEffect(() => {
+        if (page === 0) {console.log("Initial load"); dispatch(goToPageAction(DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE));}
+    });
+
     return (
-        <Provider store={store}>
             <MainPageWrapper>
                 <Layout>
                     <Navbar/>
                     <Content className="main-page-content">
                         <BikeSearchForm/>
-                        <Async>
-                            <Async.Loading>Loading ...</Async.Loading>
-                            <Async.Resolved>
-                                {data => {
-                                    return (
-                                        <BikeGallery currentPage={currentPage} bikes={data.bikes} itemsPerPage={itemsPerPage} totalRecords={data.totalRecords}/>
-                                    )
-                                }}
-                            </Async.Resolved>
-                            <Async.Rejected>{() => createNotification(error.message)}</Async.Rejected>
-                        </Async>
+                        <BikeGallery currentPage={page} bikes={bikes} itemsPerPage={size} totalRecords={totalRecords}/>
                     </Content>
                     <PageFooter/>
                 </Layout>
             </MainPageWrapper>
+    );
+}
+
+export default function MainPage() {
+    return (
+        <Provider store={store}>
+            <MainPageContent/>
         </Provider>
     );
 }

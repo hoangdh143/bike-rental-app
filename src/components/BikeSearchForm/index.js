@@ -1,10 +1,13 @@
 import React from "react";
 import {Input} from 'antd';
 import {BikeSearchFormWrapper} from "./style";
+import {useDispatch} from "react-redux";
+import {searchAction} from "../../containers/MainPage/actions";
 
 const {Search} = Input;
 
 export default function BikeSearchForm() {
+    const dispatch = useDispatch();
     return (
         <BikeSearchFormWrapper>
             <div className="bike-search-form" >
@@ -14,7 +17,7 @@ export default function BikeSearchForm() {
                     placeholder="input search text"
                     enterButton="Search"
                     size="large"
-                    onSearch={value => console.log(value)}
+                    onSearch={value => dispatch(searchAction({keyword: value}))}
                 />
             </div>
         </BikeSearchFormWrapper>

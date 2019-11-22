@@ -14,9 +14,13 @@ module.exports = router;
 
 
 function getAll(req, res, next) {
-    bikeService.getAll(req.query.page, req.query.size)
-        .then(bikes => res.json(bikes))
-        .catch(err => next(err));
+    if (req.query.city) {
+        bikeService.getByCity(req.query.city, req.query.page, req.query.size).then(bikes => res.json(bikes)).catch(err => next(err));
+    } else {
+        bikeService.getAll(req.query.page, req.query.size)
+            .then(bikes => res.json(bikes))
+            .catch(err => next(err));
+    }
 }
 
 function getById(req, res, next) {
