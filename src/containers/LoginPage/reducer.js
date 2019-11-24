@@ -1,5 +1,12 @@
+import {LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST} from './constants';
+import {produce} from 'immer';
+
 const initialState = {
-    userInfo: {
+    credential: {
+        username: '',
+        password: ''
+    },
+    user: {
         firstName: '',
         lastName: '',
         email: '',
@@ -10,10 +17,19 @@ const initialState = {
 };
 
 export default function loginPageReducer(state = initialState, action) {
-    switch (action) {
-        case LOG_IN_SUCCESS:
-            state.userInfo = action.userInfo;
-        case LOG_IN_FAILURE:
-            state.error = action.error;
-    }
+    return produce(state, draft => {
+        switch (action.type) {
+            case LOG_IN_REQUEST:
+                draft.credential = action.credential;
+                break;
+            case LOG_IN_SUCCESS:
+                draft.user = action.user;
+                break;
+            case LOG_IN_FAILURE:
+                draft.error = action.error;
+                break;
+            default:
+                return state;
+        }
+    });
 }
