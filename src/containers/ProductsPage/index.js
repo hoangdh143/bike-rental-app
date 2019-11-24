@@ -12,7 +12,9 @@ const selectCart = state => state.cart;
 const matchProductsInCart = (cart, bikes) => {
     let result = true;
     bikes.map(bike => {
-        if (bike.addedToCart !== bikeInCart(bike, cart)) {result = false}
+        if (bike.addedToCart !== bikeInCart(bike, cart)) {
+            result = false
+        }
     });
     return result;
 };
@@ -23,14 +25,18 @@ export default function ProductsPage() {
     const cart = useSelector(selectCart);
 
     useEffect(() => {
-        if (page === 0) {console.log("Initial load"); dispatch(goToPageAction(DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE));}
-        if (!matchProductsInCart(cart, bikes)) {dispatch(updatePageFromCartAction(bikes, page, size, totalRecords, cart))};
+        if (page === 0) {
+            dispatch(goToPageAction(DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE));
+        }
+        if (!matchProductsInCart(cart, bikes)) {
+            dispatch(updatePageFromCartAction(bikes, page, size, totalRecords, cart))
+        }
     });
 
     return (
         <Fragment>
-                    <BikeSearchForm/>
-                    <BikeGallery currentPage={page} bikes={bikes} pageSize={size} totalRecords={totalRecords}/>
+            <BikeSearchForm/>
+            <BikeGallery currentPage={page} bikes={bikes} pageSize={size} totalRecords={totalRecords}/>
         </Fragment>
     );
 }

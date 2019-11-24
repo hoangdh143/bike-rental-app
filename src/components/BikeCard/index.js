@@ -16,10 +16,10 @@ export default function BikeCard({bike}) {
             style={{ width: 240 }}
             cover={<img alt="example" src={bike.image} />}
         >
-            <Meta title={bike.model} description={`${bike.price} VND`} />
-            <div>{bike.city}</div>
-            {bike.addedToCart ? <Button disabled={true}>Added to cart</Button> :
-                <Button onClick={() => {dispatch(addToCartAction(bike))}}>Add to cart</Button>
+            <Meta title={bike.model} description={`${bike.price} USD`} />
+            <div className="bike-card-city">{bike.city}</div>
+            {bike.addedToCart ? <Button className="bike-card-button" disabled={true}>Added to cart</Button> :
+                <Button className="bike-card-button" onClick={() => {dispatch(addToCartAction(bike))}}>Add to cart</Button>
             }
         </Card>
         </BikeCardWrapper>

@@ -1,5 +1,6 @@
 import {ADD_TO_CART, SEARCH, GO_TO_PAGE, DISPLAY, UPDATE_PAGE_FROM_CART, REMOVE_FROM_CART} from './constants';
 import {DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE} from "./index";
+
 export const addToCartAction = (bike) => {
     return {
         type: ADD_TO_CART,

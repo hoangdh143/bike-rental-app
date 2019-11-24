@@ -19,7 +19,7 @@ import ProductsPage from "../ProductsPage";
 import CartPage from "../CartPage";
 
 export const DEFAULT_CURRENT_PAGE = 1;
-export const DEFAULT_PAGE_SIZE = 10;
+export const DEFAULT_PAGE_SIZE = 8;
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(siteLayoutReducer, composeWithDevTools(applyMiddleware(sagaMiddleWare)));
@@ -28,7 +28,6 @@ sagaMiddleWare.run(siteLayoutSaga);
 const {Content} = Layout;
 
 export default function SiteLayout(props) {
-    console.log(props.match);
     return (
         <Provider store={store}>
             <SiteLayoutWrapper>

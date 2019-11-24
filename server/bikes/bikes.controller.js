@@ -24,7 +24,9 @@ function getAll(req, res, next) {
 }
 
 function getById(req, res, next) {
-    bikeService.getById(req.params.id).then(bike => {console.log(bike);res.json(bike);}).catch(err => next(err));
+    bikeService.getById(req.params.id).then(bike => {
+        res.json(bike);
+    }).catch(err => next(err));
 }
 
 function create(req, res, next) {

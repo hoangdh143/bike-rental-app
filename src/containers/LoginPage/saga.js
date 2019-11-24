@@ -1,4 +1,4 @@
-import { put, takeEvery, delay } from 'redux-saga/effects'
+import {put, takeEvery, delay} from 'redux-saga/effects'
 import {userService} from "../../services/login.service";
 import {LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS} from "./constants";
 import {takeLatest} from "@redux-saga/core/effects";
@@ -8,7 +8,7 @@ const getCredential = state => state.credential;
 
 export function* login(state) {
     const credential = getCredential(state);
-    try  {
+    try {
         const user = yield userService.login(credential.username, credential.password);
         localStorage.setItem('user', JSON.stringify(user));
         yield put(loginSuccessAction(user));

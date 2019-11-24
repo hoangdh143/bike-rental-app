@@ -6,10 +6,10 @@ import {useDispatch, useSelector} from "react-redux";
 const selectQuery = state => state.query;
 
 export default function GalleryPagination({currentPage = 0, pageSize = 0, totalRecords = 0}) {
-    console.log(currentPage + " " + pageSize + " " + totalRecords);
     const dispatch = useDispatch();
     const {keyword} = useSelector(selectQuery);
     return (
-        <Pagination current={currentPage} pageSize={pageSize} total={totalRecords} onChange={(page, size) => dispatch(goToPageAction(page, size, keyword))}>Hello</Pagination>
+        <Pagination current={currentPage} pageSize={pageSize} total={totalRecords}
+                    onChange={(page, size) => dispatch(goToPageAction(page, size, keyword))}>Hello</Pagination>
     );
 }

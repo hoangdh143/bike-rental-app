@@ -10,18 +10,19 @@ const {Meta} = Card;
 export default function CartProductCard({bike}) {
     const dispatch = useDispatch();
     const cart = useSelector(selectCart);
-    console.log(cart);
     return (
         <CartProductCardWrapper>
             <Card className="bike-card"
                   title={bike.model}
-                  hoverable extra={<Button onClick={() => {dispatch(removeFromCartAction(cart, bike))}}>Remove</Button>}>
+                  hoverable extra={<Button onClick={() => {
+                dispatch(removeFromCartAction(cart, bike))
+            }}>Remove</Button>}>
                 <Row>
                     <Col span={10}>
                         <img src={bike.image}/>
                     </Col>
                     <Col span={14}>
-                        <Meta title={`${bike.price} VND`} description={`${bike.description}`}/>
+                        <Meta title={`${bike.price} USD`} description={`${bike.description}`}/>
                     </Col>
                 </Row>
             </Card>

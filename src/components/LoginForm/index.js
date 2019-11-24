@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {connect, useDispatch, useSelector, useStore} from 'react-redux';
-import {LOG_IN_REQUEST} from "../../containers/LoginPage/constants";
 import {loginRequestAction} from "../../containers/LoginPage/actions";
 import {Form, Icon, Input, Button, Checkbox, Layout} from 'antd';
 import {LoginFormWrapper} from "./style";
@@ -13,7 +12,6 @@ function LoginForm({form}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const error = useSelector(state => state.error, error => error.message);
-    console.log(error);
     if (user !== undefined && user.email !== '') {
         location.replace("/")
     }
@@ -62,7 +60,8 @@ function LoginForm({form}) {
                         {error ? <div className="error-message">{error}</div> : ''}
 
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => dispatch(loginRequestAction(username, password))}>
+                            <Button type="primary" htmlType="submit" className="login-form-button"
+                                    onClick={() => dispatch(loginRequestAction(username, password))}>
                                 Log in
                             </Button>
                         </Form.Item>

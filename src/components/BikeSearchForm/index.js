@@ -10,7 +10,7 @@ export default function BikeSearchForm() {
     const dispatch = useDispatch();
     return (
         <BikeSearchFormWrapper>
-            <div className="bike-search-form" >
+            <div className="bike-search-form">
                 <h2 className="bike-search-item">Please enter your city</h2>
                 <Search
                     className="bike-search-input bike-search-item"
