@@ -11,7 +11,7 @@ export default function CartProductCard({bike}) {
         <CartProductCardWrapper>
             <Card className="bike-card"
                   title={bike.model}
-                  hoverable extra={<Button href="#">Remove</Button>}>
+                  hoverable extra={<Button onClick={() => {dispatch(removeFromCartAction(bike))}}>Remove</Button>}>
                 <Row>
                     <Col span={10}>
                         <img src={bike.image}/>

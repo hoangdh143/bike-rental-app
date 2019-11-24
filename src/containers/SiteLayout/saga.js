@@ -5,14 +5,6 @@ import {bikeService} from "../../services/bikes.service";
 import {displayAction} from "./actions";
 
 export function* addToCart(state) {
-    // const cart = getCredential(state);
-    // try  {
-    //     const user = yield userService.login(credential.username, credential.password);
-    //     localStorage.setItem('user', JSON.stringify(user));
-    //     yield put(loginSuccessAction(user));
-    // } catch (error) {
-    //     yield put(loginFailureAction(error.message));
-    // }
 }
 
 export function* search(state) {
@@ -20,6 +12,7 @@ export function* search(state) {
     const keyword = state.query.keyword;
     const {page, size} = state.pageQuery;
     const {bikes, totalRecords} = yield bikeService.getAll(page, size, keyword);
+    bikes.map(bike => bike.addedToCart = false);
     yield put(displayAction(bikes, page, size, totalRecords));
 }
 
@@ -27,6 +20,7 @@ export function* goToPage(state) {
     const keyword = state.query ? state.query.keyword : '';
     const {page, size} = state.pageQuery;
     const {bikes, totalRecords} = yield bikeService.getAll(page, size, keyword);
+    bikes.map(bike => bike.addedToCart = false);
     yield put(displayAction(bikes, page, size, totalRecords));
 }
 

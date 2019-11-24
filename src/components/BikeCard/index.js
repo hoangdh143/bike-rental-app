@@ -18,7 +18,9 @@ export default function BikeCard({bike}) {
         >
             <Meta title={bike.model} description={`${bike.price} VND`} />
             <div>{bike.city}</div>
-            <Button onClick={() => {dispatch(addToCartAction(bike))}}>Add to cart</Button>
+            {bike.addedToCart ? <Button disabled={true}>Added to cart</Button> :
+                <Button onClick={() => {dispatch(addToCartAction(bike))}}>Add to cart</Button>
+            }
         </Card>
         </BikeCardWrapper>
     );

@@ -1,4 +1,4 @@
-import {ADD_TO_CART, SEARCH, GO_TO_PAGE, DISPLAY} from './constants';
+import {ADD_TO_CART, SEARCH, GO_TO_PAGE, DISPLAY, UPDATE_PAGE_FROM_CART, REMOVE_FROM_CART} from './constants';
 import {DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE} from "./index";
 export const addToCartAction = (bike) => {
     return {
@@ -40,5 +40,24 @@ export const displayAction = (bikes, page, size, totalRecords) => {
             size,
             totalRecords
         }
+    }
+};
+export const updatePageFromCartAction = (bikes, page, size, totalRecords, cart) => {
+    return {
+        type: UPDATE_PAGE_FROM_CART,
+        display: {
+            bikes,
+            page,
+            size,
+            totalRecords
+        },
+        cart
+    }
+};
+
+export const removeFromCartAction = (bike) => {
+    return {
+        type: REMOVE_FROM_CART,
+        bike
     }
 }
