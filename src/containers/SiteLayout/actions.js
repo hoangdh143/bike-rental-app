@@ -3,7 +3,7 @@ import {DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE} from "./index";
 export const addToCartAction = (bike) => {
     return {
         type: ADD_TO_CART,
-        bike
+        bike: {...bike, addedToCart: true}
     }
 };
 
@@ -55,9 +55,10 @@ export const updatePageFromCartAction = (bikes, page, size, totalRecords, cart) 
     }
 };
 
-export const removeFromCartAction = (bike) => {
+export const removeFromCartAction = (cart, bike) => {
     return {
         type: REMOVE_FROM_CART,
-        bike
+        cart,
+        bike: {...bike, addedToCart: false}
     }
 }

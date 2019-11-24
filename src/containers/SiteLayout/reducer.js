@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import {produce} from 'immer';
 import {ADD_TO_CART, SEARCH, GO_TO_PAGE, DISPLAY, UPDATE_PAGE_FROM_CART, REMOVE_FROM_CART} from './constants';
 import {DEFAULT_CURRENT_PAGE, DEFAULT_PAGE_SIZE} from "./index";
 
@@ -19,6 +19,14 @@ const initialState = {
     }
 };
 
+export function bikeInCart(bike, cart) {
+    let result = false;
+    cart.map(bikeAdded => {
+        if (bike.id === bikeAdded.id) {result = true;}
+    });
+    return result;
+}
+
 export default function siteLayoutReducer(state = initialState, action) {
     return produce(state, draft => {
         switch (action.type) {
@@ -28,9 +36,9 @@ export default function siteLayoutReducer(state = initialState, action) {
                 break;
             case REMOVE_FROM_CART:
                 console.log("Remove from cart");
-                const index = cart.findIndex(bike => bike.id === action.bike.id);
-                draft.cart = [...cart.slice(0,index),
-                    ...cart.slice(index+1, cart.length)];
+                const index = action.cart.findIndex(bike => bike.id === action.bike.id);
+                draft.cart = [...action.cart.slice(0, index),
+                    ...action.cart.slice(index + 1, action.cart.length)];
                 break;
             case SEARCH:
                 console.log("Query input");
@@ -47,9 +55,9 @@ export default function siteLayoutReducer(state = initialState, action) {
             case UPDATE_PAGE_FROM_CART:
                 const cart = action.cart;
                 const bikes = [...action.display.bikes];
-                cart.map(bikeAdded => {bikes.map((bike, index) => {if (bike.id === bikeAdded.id && bike.addedToCart === false) {
-                    bikes[index] = {...bike, addedToCart: true};
-                }})});
+                bikes.map((bike, index) => {
+                    bikes[index] = {...bike, addedToCart: bikeInCart(bike, cart)};
+                });
                 draft.display = {...action.display, bikes};
                 break;
             default:

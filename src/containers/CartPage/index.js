@@ -15,7 +15,7 @@ export default function CartPage() {
                     <Col span={12}>
                         {cart.map(bike => {
                             return (
-                                <CartProductCard bike={bike}/>
+                                <CartProductCard key={bike.id} bike={bike}/>
                             );
                         })}
                     </Col>
