@@ -6,4 +6,7 @@ export const NavbarWrapper = styled.div`
   height: 31px;
   float: left;
 }
+.logout {
+    float: right;
+}
 `;

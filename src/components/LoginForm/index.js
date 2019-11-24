@@ -62,17 +62,9 @@ function LoginForm({form}) {
                         {error ? <div className="error-message">{error}</div> : ''}
 
                         <Form.Item>
-                            {getFieldDecorator('remember', {
-                                valuePropName: 'checked',
-                                initialValue: true,
-                            })(<Checkbox>Remember me</Checkbox>)}
-                            <a className="login-form-forgot" href="">
-                                Forgot password
-                            </a>
                             <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => dispatch(loginRequestAction(username, password))}>
                                 Log in
                             </Button>
-                            Or <a href="">register now!</a>
                         </Form.Item>
                     </Form>
                 </Content>

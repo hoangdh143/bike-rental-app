@@ -9,7 +9,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link, Redirect
 } from "react-router-dom";
 import LoginPage from "./containers/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
@@ -27,6 +27,7 @@ class App extends Component{
                 <Switch>
                     <PrivateRoute path="/home" component={productsPage}/>
                     <Route path="/login" component={LoginPage}/>
+                    <Route exact path="/" component={() => <Redirect to={{pathname: '/home'}}/>}/>
                 </Switch>
                 <NotificationContainer/>
             </div>
