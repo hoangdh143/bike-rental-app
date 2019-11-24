@@ -19,7 +19,7 @@ const initialState = {
     }
 };
 
-export default function mainPageReducer(state = initialState, action) {
+export default function siteLayoutReducer(state = initialState, action) {
     return produce(state, draft => {
         switch (action.type) {
             case ADD_TO_CART:

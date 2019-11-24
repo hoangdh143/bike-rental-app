@@ -2,6 +2,7 @@ import React from "react";
 import {Menu, Layout} from "antd";
 import {NavbarWrapper} from "./style";
 import logo from '../../images/logo.png';
+import {Link} from "react-router-dom";
 
 const {Header} = Layout;
 
@@ -15,12 +16,11 @@ export default function Navbar() {
             <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={['2']}
+                defaultSelectedKeys={['`']}
                 style={{ lineHeight: '64px' }}
             >
-                <Menu.Item key="1">Category</Menu.Item>
-                <Menu.Item key="2">Promotions</Menu.Item>
-                <Menu.Item key="3">Cart</Menu.Item>
+                <Menu.Item key="1" ><Link to="/home">Products</Link></Menu.Item>
+                <Menu.Item key="2"><Link to="/home/cart">Cart</Link></Menu.Item>
             </Menu>
         </Header>
         </NavbarWrapper>

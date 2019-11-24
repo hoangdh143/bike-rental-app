@@ -4,7 +4,7 @@ import { Pagination } from 'antd';
 import {Col, Row} from "antd";
 import {BikeGalleryWrapper} from "./style";
 import {useDispatch} from "react-redux";
-import {goToPageAction} from "../../containers/MainPage/actions";
+import {goToPageAction} from "../../containers/SiteLayout/actions";
 import GalleryPagination from "../GalleryPagination";
 
 export default function BikeGallery({bikes, currentPage, pageSize, totalRecords}) {

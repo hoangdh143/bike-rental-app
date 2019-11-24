@@ -30,7 +30,7 @@ export function* goToPage(state) {
     yield put(displayAction(bikes, page, size, totalRecords));
 }
 
-export default function* mainPageSaga() {
+export default function* siteLayoutSaga() {
     yield takeLatest(ADD_TO_CART, addToCart);
     yield takeLatest(SEARCH, search);
     yield takeLatest(GO_TO_PAGE, goToPage);

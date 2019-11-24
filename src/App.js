@@ -13,8 +13,11 @@ import {
 } from "react-router-dom";
 import LoginPage from "./containers/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
-import MainPage from "./containers/MainPage";
+import SiteLayout from "./containers/SiteLayout";
 import {NotificationContainer} from "react-notifications";
+import ProductsPage from "./containers/ProductsPage";
+
+const productsPage = () => {return <SiteLayout> <ProductsPage/> </SiteLayout>};
 
 class App extends Component{
     render(){
@@ -22,7 +25,7 @@ class App extends Component{
             <Router>
             <div className="App">
                 <Switch>
-                    <PrivateRoute exact path="/" component={MainPage}/>
+                    <PrivateRoute path="/home" component={productsPage}/>
                     <Route path="/login" component={LoginPage}/>
                 </Switch>
                 <NotificationContainer/>

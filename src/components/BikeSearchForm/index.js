@@ -2,7 +2,7 @@ import React from "react";
 import {Input} from 'antd';
 import {BikeSearchFormWrapper} from "./style";
 import {useDispatch} from "react-redux";
-import {searchAction} from "../../containers/MainPage/actions";
+import {searchAction} from "../../containers/SiteLayout/actions";
 
 const {Search} = Input;
 
